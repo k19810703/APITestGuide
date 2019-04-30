@@ -284,7 +284,7 @@ everything is so fucking fine
 
 至此我们已经完成了3个主要的输入文件，测试case，数据，环境,这些文件都可以在sample目录下找到，这里补充上report模板mytemplat.hbs,如果需要定制，请自行编辑
 
-在命令行中断执行，
+在命令行终端，cd到你存放上述文件的目录中断执行下面命令
 ```
 newman run APITestGuide.postman_collection.json \
 -d data.json \
@@ -294,7 +294,7 @@ newman run APITestGuide.postman_collection.json \
 ```
 * APITestGuide.postman_collection.json 
 
-  测试case，此处为默认
+  指定测试case文件为，APITestGuide.postman_collection.json 
 * -d data.json 
   
   指定数据文件
@@ -310,4 +310,14 @@ newman run APITestGuide.postman_collection.json \
 
   指定环境配置文件为myenv.postman_environment.json
 
+## Debug
+打开控制台
+![图](./pics/0320.png)
 
+代码中添加console.log来输出需要的检查的变量到控制台
+```javascript
+console.log(xxx)
+```
+
+##  最后
+希望你看完已经完全掌握api自动化测试，有问题联系wuhd@cn.ibm.com
