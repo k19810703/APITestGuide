@@ -73,7 +73,7 @@ json-server --watch db.json
 ![图](./pics/0100.png)
 ![图](./pics/0110.png)
 
-接下来增加验证的代码，验证我们用(chai的assert模块)[https://www.chaijs.com/api/assert/]
+接下来增加验证的代码，验证我们用[chai的assert模块](https://www.chaijs.com/api/assert/)
 ![图](./pics/0120.png)
 Tests框内的代码部分可以从下面黏贴，代码部分说明参考注释
 ```javascript
@@ -103,9 +103,14 @@ pm.test("验证返回数据跟预想一致", function () {
   // 比较预想值和实际值，当验证不通过事后输出参数3的字符串方便排查
   // 本例用的json结果的比较，jsonData里只需要包含所有的expectData即为通过，其他验证类型参考文档
   assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);
-  // id为自增字段，此处保留id留作后面使用
+  // id为自增字段，每一次请求都不一定相同，为了后面使用，把返回值的id保留到全局变量newid
   pm.globals.set("newid", jsonData.id);
-
 });
 
 ```
+
+try it again
+![图](./pics/0130.png)
+
+everything looks fine
+![图](./pics/0140.png)
