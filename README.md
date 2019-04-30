@@ -38,7 +38,7 @@ json-server --watch db.json
 ```
 
 ## 教程说明
-本教程会通过下面4个API请求，覆盖大部分用法
+本教程会通过下面2个API请求，覆盖大部分用法
 - 通过post请求创建一个动物
 - 通过get请求获取创建完的动物
 
@@ -284,7 +284,7 @@ everything is so fucking fine
 
 至此我们已经完成了3个主要的输入文件，测试case，数据，环境,这些文件都可以在sample目录下找到，这里补充上report模板mytemplat.hbs,如果需要定制，请自行编辑
 
-在命令行终端，cd到你存放上述文件的目录中断执行下面命令
+在命令行终端，cd到你存放上述文件的目录中断执行下面命令，执行完毕后，可以打开testreport.html看报告
 ```
 newman run APITestGuide.postman_collection.json \
 -d data.json \
