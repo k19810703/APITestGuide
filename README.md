@@ -262,3 +262,9 @@ just do it
 
 everything is so fucking fine
 ![图](./pics/0280.png)
+
+## 进行自动化测试
+导出测试case
+![图](./pics/0290.png)
+![图](./pics/0300.png)
+
