@@ -19,7 +19,7 @@
 
 ## 创建模拟被测环境
 找到一个空目录(参考sample目录)，创建一个db.json的文件
-```json
+```JSON
 {
   "animals": [
   ]
@@ -165,7 +165,7 @@ try it, and again , every this looks just fine
 * 分离数据:
 
 我们希望把post请求的负载数据分离到数据文件里，并用于后面的验证步骤来用，创建一个data.json文件
-```json
+```JSON
 [{
   "newanimal": {
   	"name": "first animal",
