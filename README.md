@@ -256,3 +256,9 @@ pm.test("验证返回数据跟预想一致", function () {
 
 打开请求，修改原来请求中固定的url为环境变量
 ![图](./pics/0260.png)
+
+just do it
+![图](./pics/0270.png)
+
+everything is so fucking fine
+![图](./pics/0280.png)
