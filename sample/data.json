@@ -1,0 +1,10 @@
+[{
+  "newanimal": {
+  	"name": "first animal",
+  	"type": "cat",
+  	"age": 2,
+  	"likes": [
+  		"fish", "mouse"
+  	]
+  }
+}]
