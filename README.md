@@ -34,9 +34,7 @@ json-server --watch db.json
 ## 教程说明
 本教程会通过下面4个API请求，覆盖大部分用法
 - 通过post请求创建一个动物
-- 通过get获取所有的动物
 - 通过get请求获取创建完的动物
-- 通过delete请求删除既有的东西
 
 自动化测试的执行需要3个主要输入文件
 - 测试用例
@@ -114,3 +112,57 @@ try it again
 
 everything looks fine
 ![图](./pics/0140.png)
+
+至此第一个请求完成，接下来我们补充全局变量的用法
+
+参考post来再创建一个新的请求"通过get请求获取创建完的动物"，此处不详细截图了，创建完如下
+![图](./pics/0150.png)
+
+此处请求地址里用到了{{newid}},这个newid的值即为第一个post请求最后的Tests代码里设置的，创建完的id，此处通过get请求来get指定id的数据
+
+Tests代码
+```javascript
+const chai = require('chai');
+const assert = chai.assert;
+// 从全局变量里取得newid的值
+const expectid = pm.globals.get("newid");
+
+pm.test("验证返回值200", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);
+});
+pm.test("验证返回数据跟预想一致", function () {
+  const jsonData = pm.response.json();
+  const expectData = {
+    // 加入对期待值的验证
+    id: expectid,
+    name: 'first animal',
+    type: 'cat',
+    age: 2,
+    likes: [
+      'fish', 'mouse'
+    ]
+  };
+  const actualstr = JSON.stringify(jsonData);
+  const expectstr = JSON.stringify(expectData);
+  assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);
+});
+```
+
+try it, and again , every this looks just fine
+![图](./pics/0160.png)
+
+至此，所有的2个请求的手工部分都做完了
+
+## 自动化的准备
+这里我们要解决以下个关键问题，为自动化做好准备
+* 分离数据
+数据会随着应用程序的更改而做出更改，直接写在请求里会非常的不方便，也不易于维护
+* 分离环境配置
+各个测试环境会是用同样的测试用例，但是例如url等等会不同，需要能灵活的配置
+
+手工测试的步骤里，其实把测试用例，数据，环境做到了一起，这里我们来剥离他们。
+
+
+
+
+
