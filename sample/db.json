@@ -9,6 +9,46 @@
         "mouse"
       ],
       "id": 1
+    },
+    {
+      "name": "first animal",
+      "type": "cat",
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "id": 2
+    },
+    {
+      "name": "first animal",
+      "type": "cat",
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "id": 3
+    },
+    {
+      "name": "first animal",
+      "type": "cat",
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "id": 4
+    },
+    {
+      "name": "first animal",
+      "type": "cat",
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "id": 5
     }
   ]
 }

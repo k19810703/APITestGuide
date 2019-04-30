@@ -72,3 +72,40 @@ json-server --watch db.json
 光发送请求是不够的，我们在增加一些验证，先对我们要做的验证做一点描述
 ![图](./pics/0100.png)
 ![图](./pics/0110.png)
+
+接下来增加验证的代码，验证我们用(chai的assert模块)[https://www.chaijs.com/api/assert/]
+![图](./pics/0120.png)
+Tests框内的代码部分可以从下面黏贴，代码部分说明参考注释
+```javascript
+// 引入chai的assert模块作为验证用模块
+const chai = require('chai');
+const assert = chai.assert;
+// 验证返回值，通常返回值可能有200，201，202，本例中3返回值为这3个中的一个即为pass，实际使用中可以按需修改
+pm.test("验证返回值201", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);
+});
+// 验证返回值
+pm.test("验证返回数据跟预想一致", function () {
+  // 获取返回值
+  const jsonData = pm.response.json();
+  // 设置预想值
+  const expectData = {
+    name: 'first animal',
+    type: 'cat',
+    age: 2,
+    likes: [
+      'fish', 'mouse'
+    ]
+  };
+  // 为方便后期排查，我们把预想值和实际值转换成string类型
+  const actualstr = JSON.stringify(jsonData);
+  const expectstr = JSON.stringify(expectData);
+  // 比较预想值和实际值，当验证不通过事后输出参数3的字符串方便排查
+  // 本例用的json结果的比较，jsonData里只需要包含所有的expectData即为通过，其他验证类型参考文档
+  assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);
+  // id为自增字段，此处保留id留作后面使用
+  pm.globals.set("newid", jsonData.id);
+
+});
+
+```
