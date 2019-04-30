@@ -1,5 +1,5 @@
 # APITestGuide
-手把手教会你做API自动化测试
+手把手教会你做API自动化测试，你需要有一点点扣腚经验，至少保证能准确的ctrl+c ctrl+v
 
 ## 环境配置
 - 下载安装
@@ -47,3 +47,8 @@ json-server --watch db.json
 
 当然，报告也是必不可少的，如何生成报告也会在本教程中被覆盖
 
+## 使用postman进行手工测试
+自动化测试只是把手工测试的步骤自动化执行，so第一步，我们先来手工做一遍
+
+打开postman，创建一个collection
+![avatar](./pics/0001.png)
