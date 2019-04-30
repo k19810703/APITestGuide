@@ -51,20 +51,24 @@ json-server --watch db.json
 自动化测试只是把手工测试的步骤自动化执行，so第一步，我们先来手工做一遍
 
 打开postman，创建一个collection
-![avatar](./pics/0010.png)
-![avatar](./pics/0020.png)
+![图](./pics/0010.png)
+![图](./pics/0020.png)
 
 创建一个请求:通过post请求创建一个动物
-![avatar](./pics/0030.png)
-![avatar](./pics/0040.png)
+![图](./pics/0030.png)
+![图](./pics/0040.png)
 
 试一下
-![avatar](./pics/0050.png)
+![图](./pics/0050.png)
 
 结果如下图，返回201，表示正常，创建完的数据也加上了id并放回
-![avatar](./pics/0060.png)
+![图](./pics/0060.png)
 
 这个请求没啥问题，保存起来
-![avatar](./pics/0070.png)
-![avatar](./pics/0080.png)
-![avatar](./pics/0090.png)
+![图](./pics/0070.png)
+![图](./pics/0080.png)
+![图](./pics/0090.png)
+
+光发送请求是不够的，我们在增加一些验证，先对我们要做的验证做一点描述
+![图](./pics/0100.png)
+![图](./pics/0110.png)
