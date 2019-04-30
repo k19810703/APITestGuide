@@ -7,14 +7,12 @@
   * [Node.js](https://nodejs.org/en/)
 
 - 命令行安装
-
   * newman
-```
-npm install -g newman
-```
-
+  ```
+  npm install -g newman
+  ```
   * jsonserver(非必须，本教程用做API服务器的mock，用法很多，自行参考[Node.js](https://github.com/typicode/json-server)
 )
-```
-npm install -g jsonserver
-```
+  ```
+  npm install -g jsonserver
+  ```
