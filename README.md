@@ -104,7 +104,6 @@ pm.test("验证返回数据跟预想一致", function () {
   // id为自增字段，每一次请求都不一定相同，为了后面使用，把返回值的id保留到全局变量newid
   pm.globals.set("newid", jsonData.id);
 });
-
 ```
 
 try it again
@@ -179,7 +178,67 @@ try it, and again , every this looks just fine
 ```
 此处添加newanimal字段，并把post请求的body复制过来放在这里
 
+这里引入一个新的知识点"Pre-request Script",postman的执行顺序
+1.  Pre-request Script
+2.  发送http请求
+3.  Tests
 
+由于Tests的脚本会在请求后做，一般我们会把验证都放在Tests里，Pre-request Script会在执行请求前做，我们用于数据的准备，就比如现在的情况，我们需要从data.json读取post请求需要的body数据来发送请求。
 
+打开post请求，添加Pre-request Script代码
+![图](./pics/0170.png)
 
+Pre-request Script代码
+```javascript
+// 把数据文件里的newanimal字段读出来，并保存在body变量，此处data为固定名字，由postman创建，更改无效
+const body = data.newanimal;
+// 把body变量转换成字符串后设置到全局变量requestbody里
+pm.globals.set("requestbody", JSON.stringify(body));
+```
 
+更改请求的body内容
+![图](./pics/0180.png)
+
+更改Tests代码
+```javascript
+const chai = require('chai');
+const assert = chai.assert;
+pm.test("验证返回值201", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);
+});
+pm.test("验证返回数据跟预想一致", function () {
+  const jsonData = pm.response.json();
+  // 预想值部分从data文件中读取
+  const expectData = data.newanimal;
+  const actualstr = JSON.stringify(jsonData);
+  const expectstr = JSON.stringify(expectData);
+  assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);
+  pm.globals.set("newid", jsonData.id);
+});
+```
+
+同理修改get请求的Tests代码
+```javascript
+const chai = require('chai');
+const assert = chai.assert;
+const expectid = pm.globals.get("newid");
+
+pm.test("验证返回值200", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);
+});
+pm.test("验证返回数据跟预想一致", function () {
+    const jsonData = pm.response.json();
+    // 预想值部分从data文件中读取
+    const expectData = data.newanimal;
+    // 预想值中没有id字段，我们需要对id做验证，添加id
+    expectData.id = expectid;
+    const actualstr = JSON.stringify(jsonData);
+    const expectstr = JSON.stringify(expectData);
+    assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);
+    pm.globals.set("newid", jsonData.id);
+});
+```
+至此我们的测试代码里已经没有数据了，当用到外部数据文件时，就不能通过send按钮来发起请求了，我们需要使用postman的Collection Runner
+![图](./pics/0190.png)
+![图](./pics/0200.png)
+![图](./pics/0210.png)
