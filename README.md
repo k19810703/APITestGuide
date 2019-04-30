@@ -318,6 +318,21 @@ newman run APITestGuide.postman_collection.json \
 
   指定环境配置文件为myenv.postman_environment.json
 
+## 文件上传
+文件上传的请求，postman是不能正常导出的，上传的文件的信息会丢失，我们需要再DESCRIPTION字段留下文件名信息供自动化测试使用
+![图](./pics/0330.png)
+在导出json文件后进行一次变换，变换需要用到[cic工具包](https://www.npmjs.com/package/@cic-digital/cic-tool-kit)
+
+安装
+```
+  npm install -g @cic-digital/cic-tool-kit
+```
+
+变换
+```
+  ctk editpostman --input=导出的json文件 --output=变换后的文件名
+```
+
 ## Debug
 打开控制台
 ![图](./pics/0320.png)
