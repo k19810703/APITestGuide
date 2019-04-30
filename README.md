@@ -238,7 +238,21 @@ pm.test("验证返回数据跟预想一致", function () {
     pm.globals.set("newid", jsonData.id);
 });
 ```
-至此我们的测试代码里已经没有数据了，当用到外部数据文件时，就不能通过send按钮来发起请求了，我们需要使用postman的Collection Runner
+至此我们的测试代码里已经没有数据了，测试代码基本是一次成型无需修改，测试数据可以按需修改
+
+当用到外部数据文件时，就不能通过send按钮来发起请求了，我们需要使用postman的Collection Runner
 ![图](./pics/0190.png)
 ![图](./pics/0200.png)
 ![图](./pics/0210.png)
+
+一如既往的稳
+![图](./pics/0220.png)
+
+* 分离环境:
+
+![图](./pics/0230.png)
+![图](./pics/0240.png)
+![图](./pics/0250.png)
+
+打开请求，修改原来请求中固定的url为环境变量
+![图](./pics/0260.png)

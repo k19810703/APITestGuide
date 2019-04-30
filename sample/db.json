@@ -59,6 +59,26 @@
         "mouse"
       ],
       "id": 6
+    },
+    {
+      "name": "first animal",
+      "type": "cat",
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "id": 7
+    },
+    {
+      "age": 2,
+      "likes": [
+        "fish",
+        "mouse"
+      ],
+      "name": "first animal",
+      "type": "cat",
+      "id": 8
     }
   ]
 }
