@@ -11,6 +11,12 @@
   ```
   npm install -g newman
   ```
+
+  * newman-html-report
+  ```
+  npm install -g newman-reporter-html
+  ```
+
   * jsonserver(非必须，本教程用做API服务器的mock，用法很多，自行[参考](https://github.com/typicode/json-server)
 )
   ```
@@ -267,4 +273,41 @@ everything is so fucking fine
 导出测试case
 ![图](./pics/0290.png)
 ![图](./pics/0300.png)
+
+导出后为json文件，可以作为代码的一部分保存到代码仓库，其他开发人员可以在postman导入这个json文件进行编辑
+
+导出环境配置
+![图](./pics/0230.png)
+![图](./pics/0310.png)
+
+导出后也是json格式，打开一看应该就能明白，根据环境不同修改值即可
+
+至此我们已经完成了3个主要的输入文件，测试case，数据，环境,这些文件都可以在sample目录下找到，这里补充上report模板mytemplat.hbs,如果需要定制，请自行编辑
+
+在命令行中断执行，
+```
+newman run APITestGuide.postman_collection.json \
+-d data.json \
+-r html --reporter-html-export testreport.html \
+--reporter-html-template mytemplat.hbs \
+--environment myenv.postman_environment.json
+```
+* APITestGuide.postman_collection.json 
+
+  测试case，此处为默认
+* -d data.json 
+  
+  指定数据文件
+* -r html --reporter-html-export testreport.html
+
+  指定report格式为html，输入到testreport.html
+
+* --reporter-html-template mytemplat.hbs
+
+  指定report模板为mytemplat.hbs
+
+* --environment myenv.postman_environment.json
+
+  指定环境配置文件为myenv.postman_environment.json
+
 

@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "c64b31ac-e307-4ac4-a4a8-b4ed543bfa13",
+		"name": "APITestGuide",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "通过post请求创建一个动物",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "37f7a742-6ac0-4af3-90a5-78bd7d276ad9",
+						"exec": [
+							"const body = data.newanimal;",
+							"pm.globals.set(\"requestbody\", JSON.stringify(body));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e74363d-3b09-46d3-bae5-b8d4ffba1d80",
+						"exec": [
+							"const chai = require('chai');",
+							"const assert = chai.assert;",
+							"pm.test(\"验证返回值201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"const idx = 1;",
+							"pm.test(\"验证返回数据跟预想一致\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    const expectData = {",
+							"    \tname: 'first animal',",
+							"    \ttype: 'cat',",
+							"    \tage: 2,",
+							"    \tlikes: [",
+							"    \t\t'fish', 'mouse'",
+							"    \t]",
+							"    };",
+							"    const actualstr = JSON.stringify(jsonData);",
+							"    const expectstr = JSON.stringify(expectData);",
+							"    assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);",
+							"    pm.globals.set(\"newid\", jsonData.id);",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{requestbody}}"
+				},
+				"url": {
+					"raw": "http://{{url}}/animals",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"animals"
+					]
+				},
+				"description": "验证返回值201\n验证返回数据跟预想一致"
+			},
+			"response": []
+		},
+		{
+			"name": "通过get请求获取创建完的动物",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b855a08d-f053-4d55-9246-6a49cc681dcb",
+						"exec": [
+							"const chai = require('chai');",
+							"const assert = chai.assert;",
+							"const expectid = pm.globals.get(\"newid\");",
+							"",
+							"pm.test(\"验证返回值200\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"pm.test(\"验证返回数据跟预想一致\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    // 预想值部分从data文件中读取",
+							"    const expectData = data.newanimal;",
+							"    // 预想值中没有id字段，我们需要对id做验证，添加id",
+							"    expectData.id = expectid;",
+							"    const actualstr = JSON.stringify(jsonData);",
+							"    const expectstr = JSON.stringify(expectData);",
+							"    assert.deepInclude(jsonData, expectData, `acutal:${actualstr} | expect:${expectstr}`);",
+							"    pm.globals.set(\"newid\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{url}}/animals/{{newid}}",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"animals",
+						"{{newid}}"
+					]
+				},
+				"description": "验证返回值200\n验证返回数据跟预想一致"
+			},
+			"response": []
+		}
+	]
+}
