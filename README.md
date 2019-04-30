@@ -153,7 +153,7 @@ pm.test("验证返回数据跟预想一致", function () {
 });
 ```
 
-try it, and again , every this looks just fine
+try it, and again , every thing looks just fine
 ![图](./pics/0160.png)
 
 至此，所有的2个请求的手工部分都做完了
@@ -292,6 +292,7 @@ newman run APITestGuide.postman_collection.json \
 --reporter-html-template mytemplat.hbs \
 --environment myenv.postman_environment.json
 ```
+命令说明
 * APITestGuide.postman_collection.json 
 
   指定测试case文件为，APITestGuide.postman_collection.json 
@@ -300,7 +301,7 @@ newman run APITestGuide.postman_collection.json \
   指定数据文件
 * -r html --reporter-html-export testreport.html
 
-  指定report格式为html，输入到testreport.html
+  指定report格式为html，输出到testreport.html
 
 * --reporter-html-template mytemplat.hbs
 
