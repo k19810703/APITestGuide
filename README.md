@@ -1,3 +1,5 @@
+# 这个repo已经废弃不用了，请移步 https://github.com/k19810703/CICAPITestGuide.git
+
 # APITestGuide
 手把手教会你做API自动化测试，你需要有一点点扣腚经验，至少保证能准确的ctrl+c ctrl+v
 
