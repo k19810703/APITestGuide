@@ -24,11 +24,11 @@
   ```
 
 - 本教程用到的相关软件的版本
-* Postman v7.0.9
-* Node v10.15.2
-* npm v6.4.1
-* newman v4.4.1
-* json-server v0.14.2
+  * Postman v7.0.9
+  * Node v10.15.2
+  * npm v6.4.1
+  * newman v4.4.1
+  * json-server v0.14.2
 
 ## 创建模拟被测环境
 找到一个空目录(参考sample目录)，创建一个db.json的文件
