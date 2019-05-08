@@ -333,6 +333,37 @@ newman run APITestGuide.postman_collection.json \
   ctk editpostman --input=导出的json文件 --output=变换后的文件名
 ```
 
+## 更多sample
+
+验证schema
+```javascript
+const schema = {
+    "properties": {
+          id: {
+            "type": "number"
+          },
+          age: {
+            "type": "number"
+          },
+          likes: {
+              "type": "array",
+              "items": {
+                  "type": "string"
+                }
+          },
+          name: {
+              "type": "string",
+          },
+          type: {
+              "type": "number",
+          },
+      }
+  };
+  const schemacheck = tv4.validate(jsonData, schema);
+  assert.strictEqual(true, schemacheck, `errormsg:${JSON.stringify(tv4.error)} | schema:${JSON.stringify(schema)} | actualData:${JSON.stringify(jsonData)}`);
+```
+
+
 ## Debug
 打开控制台
 ![图](./pics/0320.png)
