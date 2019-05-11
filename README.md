@@ -7,14 +7,14 @@
   * [Node.js](https://nodejs.org/en/)
 
 - 命令行安装
-  * newman
+  * [newman](https://github.com/postmanlabs/newman)
   ```
   npm install -g newman
   ```
 
-  * newman-html-report
+  * [newman-reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
   ```
-  npm install -g newman-reporter-html
+  npm install -g newman-reporter-htmlextra
   ```
 
   * jsonserver(非必须，本教程用做API服务器的mock，用法很多，自行[参考](https://github.com/typicode/json-server)
@@ -295,8 +295,8 @@ everything is so fucking fine
 ```
 newman run APITestGuide.postman_collection.json \
 -d data.json \
--r html --reporter-html-export testreport.html \
---reporter-html-template mytemplat.hbs \
+-r htmlextra --reporter-htmlextra-export testreport.html \
+--reporter-htmlextra-template mytemplat.hbs \
 --environment myenv.postman_environment.json
 ```
 命令说明
@@ -306,11 +306,11 @@ newman run APITestGuide.postman_collection.json \
 * -d data.json 
   
   指定数据文件
-* -r html --reporter-html-export testreport.html
+* -r html --reporter-htmlextra-export testreport.html
 
   指定report格式为html，输出到testreport.html
 
-* --reporter-html-template mytemplat.hbs
+* --reporter-htmlextra-template mytemplat.hbs
 
   指定report模板为mytemplat.hbs
 
