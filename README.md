@@ -7,6 +7,9 @@
   * [Node.js](https://nodejs.org/en/)
 
 - 命令行安装
+
+  这里比较常见的错误是没有权限，MAC或者Linux可以用sudo来install，windows可以使用Administrator来启动cmd窗口安装
+
   * newman
   ```
   npm install -g newman
@@ -22,6 +25,8 @@
   ```
   npm install -g json-server
   ```
+  注：jsonserver最为rest服务的mock，可以低成本的解决很多问题，值得深入学习一下，欢迎一起探讨
+  
 
 - 本教程用到的相关软件的版本
   * Postman v7.0.9
