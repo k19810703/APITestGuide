@@ -1,6 +1,10 @@
 # APITestGuide
 手把手教会你做API自动化测试，你需要有一点点扣腚经验，至少保证能准确的ctrl+c & ctrl+v
 
+API自动化是一个低投入高产出的工作，几乎适用于所有的api项目。
+
+完整的自动化测试解决方案需要包含 环境构筑 自动化执行 环境清理 3个主要步骤，关于环境构筑不在本教程里覆盖，需要case by case来看合适的方案。
+
 ## 环境配置
 - 下载安装
   * [Postman](https://www.getpostman.com/downloads/)
@@ -283,7 +287,7 @@ everything is so fucking fine
 ![图](./pics/0290.png)
 ![图](./pics/0300.png)
 
-导出后为json文件，可以作为代码的一部分保存到代码仓库，其他开发人员可以在postman导入这个json文件进行编辑
+导出后为json文件，可以作为代码的一部分保存到代码仓库，其他开发人员可以在postman导入这个json文件进行编辑。另外如果有swagger，也可以从swagger文件导入生成api模板。
 
 导出环境配置
 ![图](./pics/0230.png)
@@ -293,7 +297,7 @@ everything is so fucking fine
 
 至此我们已经完成了3个主要的输入文件，测试case，数据，环境,这些文件都可以在sample目录下找到，这里补充上report模板mytemplat.hbs,如果需要定制，请自行编辑
 
-在命令行终端，cd到你存放上述文件的目录中断执行下面命令，执行完毕后，可以打开testreport.html看报告
+在命令行终端，cd到你存放上述文件的目录中执行下面命令，执行完毕后，可以打开testreport.html看报告
 ```
 newman run APITestGuide.postman_collection.json \
 -d data.json \
@@ -314,7 +318,7 @@ newman run APITestGuide.postman_collection.json \
 
 * --reporter-htmlextra-template mytemplat.hbs
 
-  指定report模板为mytemplat.hbs
+  指定report模板为mytemplat.hbs,HTML模板可以根据项目需求自行定制
 
 * --environment myenv.postman_environment.json
 
@@ -334,6 +338,12 @@ newman run APITestGuide.postman_collection.json \
 ```
   ctk editpostman --input=导出的json文件 --output=变换后的文件名
 ```
+
+## 更多report
+
+[更多report](https://github.com/postmanlabs/newman#reporters)
+
+newman提供了多种形式report的支持，如果都不能符合客户需求，那么可以考虑选在json格式，导出原始数据，再自行定制如excel之类的结果报告
 
 ## 更多sample
 
