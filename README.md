@@ -74,6 +74,16 @@ json-server --watch db.json
 创建一个请求:通过post请求创建一个动物
 ![图](./pics/0030.png)
 ![图](./pics/0040.png)
+```JSON
+{
+  "name": "first animal",
+  "type": "cat",
+  "age": 2,
+  "likes": [
+    "fish", "mouse"
+  ]
+}
+```
 
 试一下
 ![图](./pics/0050.png)
