@@ -389,6 +389,7 @@ const schema = {
 ```javascript
 // get http://www.baidu.com
 // 引入chai的assert模块作为验证用模块
+// 引入chai的assert模块作为验证用模块
 const chai = require('chai');
 const assert = chai.assert;
 
@@ -397,7 +398,7 @@ pm.test("title=百度一下，你就知道", function () {
   //类似jquery
   const $ = cheerio.load(html);
   const titleObject = $('title');
-  assert.equal(titleObject['0'].children[0].data, '百度一下，你就知道');
+  assert.equal(titleObject.text(), '百度一下，你就知道');
 });
 ```
 
