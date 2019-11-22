@@ -388,8 +388,6 @@ const schema = {
 验证html
 ```javascript
 // get http://www.baidu.com
-// 引入chai的assert模块作为验证用模块
-// 引入chai的assert模块作为验证用模块
 const chai = require('chai');
 const assert = chai.assert;
 
