@@ -1,5 +1,3 @@
-# 这个repo已经废弃不用了，请移步 https://github.com/ibm-cic/APITestGuide
-
 # APITestGuide
 手把手教会你做API自动化测试，你需要有一点点扣腚经验，至少保证能准确的ctrl+c & ctrl+v
 
@@ -385,6 +383,22 @@ const schema = {
   };
   const schemacheck = tv4.validate(jsonData, schema);
   assert.strictEqual(true, schemacheck, `errormsg:${JSON.stringify(tv4.error)} | schema:${JSON.stringify(schema)} | actualData:${JSON.stringify(jsonData)}`);
+```
+
+验证html
+```javascript
+// get http://www.baidu.com
+// 引入chai的assert模块作为验证用模块
+const chai = require('chai');
+const assert = chai.assert;
+
+pm.test("title=百度一下，你就知道", function () {
+  const html = pm.response.text();
+  //类似jquery
+  const $ = cheerio.load(html);
+  const titleObject = $('title');
+  assert.equal(titleObject['0'].children[0].data, '百度一下，你就知道');
+});
 ```
 
 
